@@ -15,6 +15,7 @@
 
 ### Eclipse ###
 
+*.pydevproject
 .metadata
 bin/
 tmp/
@@ -26,6 +27,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+
 
 # External tool builders
 .externalToolBuilders/
