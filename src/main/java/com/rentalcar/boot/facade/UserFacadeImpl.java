@@ -1,0 +1,58 @@
+package com.rentalcar.boot.facade;
+
+import java.text.ParseException;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.rentalcar.boot.converter.UserConverter;
+import com.rentalcar.boot.dto.UserDTO;
+import com.rentalcar.boot.model.User;
+import com.rentalcar.boot.service.UserService;
+
+@Component("userFacade")
+public class UserFacadeImpl implements UserFacade {
+
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private UserConverter userConverter;
+	
+	@Override
+	public List<UserDTO> getAllUsers() {
+		List<User> user = userService.getAllUsers();
+		return userConverter.reverseConvertAll(user);
+	}
+
+	@Override
+	public UserDTO getUserDtoById(Long id) {
+		User user = userService.getUserById(id);
+		UserDTO userDto = userConverter.reverseConvert(user);
+		return userDto;
+	}
+
+	@Override
+	public UserDTO createUser(UserDTO userDto) throws Exception {
+		User user = userConverter.convert(userDto);
+		userService.createUser(user);
+		return userConverter.reverseConvert(user);
+	}
+
+	@Override
+	public void updateUserDto(Long id, UserDTO userDto) throws ParseException {
+		User user = userConverter.convert(userDto); 
+		if(user.equals(userService.getUserById(id))) {
+			userService.updateUser(id, user);
+		}
+		userConverter.reverseConvert(user);
+	}
+
+	@Override
+	public void deleteUserDto(Long id) {
+		userService.deleteUser(id);
+	}
+
+}

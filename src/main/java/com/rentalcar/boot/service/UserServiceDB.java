@@ -1,7 +1,6 @@
 package com.rentalcar.boot.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.rentalcar.boot.model.User;
 import com.rentalcar.boot.repository.UserRepository;
 
-@Service
+@Service("userService")
 public class UserServiceDB implements UserService{
 	
 	@Autowired
@@ -21,38 +20,30 @@ public class UserServiceDB implements UserService{
 	}
 
 	@Override
-	public Optional<User> getUserById(long id) {
-		return userRepository.findById(id);
+	public User getUserById(Long id) {
+		return userRepository.getOne(id);
 	}
 
 	@Override
-	public void addUser(User user) {
-		User u = new User();
-		u.setName(u.getName());
-	    u.setSurname(u.getSurname());
-	    u.setDateOfBirth(u.getDateOfBirth());
-	    u.setEmail(u.getEmail());
-	    u.setPassword(u.getPassword());
-
-    	userRepository.save(u);
+	public User createUser(User user) {
+		return user = userRepository.save(user);
 	}
 
 	@Override
-	public void updateUser(int id, User user) {
-		Optional<User> u = getUserById(id);
-        
-		if(u!=null) {
-            u.get().setName(user.getName());
-            u.get().setSurname(user.getSurname());
-            u.get().setDateOfBirth(user.getDateOfBirth());
-            u.get().setEmail(user.getEmail());
-            u.get().setPassword(user.getPassword());
+	public User updateUser(Long id, User user) {
+
+		if(user.equals(getUserById(id))) {
+			user.setName(user.getName());
+			user.setSurname(user.getSurname());
+			user.setDateOfBirth(user.getDateOfBirth());
+			user.setEmail(user.getEmail());
+			user.setPassword(user.getPassword());
         }
-		userRepository.save(u.get());
+		return user = userRepository.save(user);
 	}
 
 	@Override
-	public void deleteUser(long id) {
+	public void deleteUser(Long id) {
 		userRepository.deleteById(id);
 	}
 
