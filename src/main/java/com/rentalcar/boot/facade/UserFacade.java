@@ -13,7 +13,7 @@ public interface UserFacade {
 	
 	public UserDTO createUser(UserDTO userDto) throws Exception;
 	
-	public void updateUserDto(Long id, UserDTO userDto) throws ParseException;
+	public UserDTO updateUserDto(Long id, UserDTO userDto) throws ParseException;
 	
 	public void deleteUserDto(Long id);
 

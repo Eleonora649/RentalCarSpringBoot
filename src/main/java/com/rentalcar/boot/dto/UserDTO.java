@@ -2,6 +2,7 @@ package com.rentalcar.boot.dto;
 
 public class UserDTO {
 	
+	private Long id;
 	private String name;
 	private String surname;
 	private String date;
@@ -11,6 +12,14 @@ public class UserDTO {
 	public UserDTO() {
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}

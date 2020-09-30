@@ -20,6 +20,7 @@ public class UserConverterImpl implements UserConverter {
 		User user = new User();
 		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(userDto.getDate());
 		
+		user.setIdUser(userDto.getId());
 		user.setName(userDto.getName());
 		user.setSurname(userDto.getSurname());
 		user.setDateOfBirth(date);

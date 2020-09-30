@@ -30,16 +30,17 @@ public class UserServiceDB implements UserService{
 	}
 
 	@Override
-	public User updateUser(Long id, User user) {
-
-		if(user.equals(getUserById(id))) {
-			user.setName(user.getName());
-			user.setSurname(user.getSurname());
-			user.setDateOfBirth(user.getDateOfBirth());
-			user.setEmail(user.getEmail());
-			user.setPassword(user.getPassword());
-        }
-		return user = userRepository.save(user);
+	public User updateUser(User user) {
+		User us = this.getUserById(user.getIdUser());
+		
+		if(user!=null && us!=null) {
+			us.setName(user.getName());
+			us.setSurname(user.getSurname());
+			us.setDateOfBirth(user.getDateOfBirth());
+			us.setEmail(user.getEmail());
+			us.setPassword(user.getPassword());
+		}
+		return userRepository.save(us);
 	}
 
 	@Override
