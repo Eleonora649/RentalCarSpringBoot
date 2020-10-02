@@ -13,8 +13,6 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.rentalcar.boot.dto.UserDTO;
-
 @Entity
 @Table(name="user")
 public class User {
@@ -43,7 +41,6 @@ public class User {
 	
 /*	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 	private List<Booking> booking;
-
 	@ManyToMany(targetEntity=Role.class)
 	@JoinTable(name="user_role", 
 				joinColumns={@JoinColumn(name="id_user")}, 
@@ -114,15 +111,12 @@ public class User {
 /*	public List<Booking> getBooking() {
 		return booking;
 	}
-
 	public void setBooking(List<Booking> booking) {
 		this.booking = booking;
 	}
-
 	public List<Role> getRoles() {
 		return roles;
 	}
-
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}

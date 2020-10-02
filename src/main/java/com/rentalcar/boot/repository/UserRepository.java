@@ -6,7 +6,7 @@ import com.rentalcar.boot.model.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
+@Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 }
