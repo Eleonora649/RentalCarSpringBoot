@@ -1,5 +1,7 @@
 package com.rentalcar.boot.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.rentalcar.boot.dto.CarDTO;
@@ -37,9 +40,9 @@ public class Car {
 	@JoinColumn(name="id_category")
 	private Category category;
 
-/*	@OneToMany(fetch = FetchType.LAZY, mappedBy="car")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="car")
 	private List<Booking> booking;
-*/
+
 	public Car() {
 		super();
 	}
@@ -100,14 +103,14 @@ public class Car {
 		this.category = category;
 	}
 
-/*	public List<Booking> getBooking() {
+	public List<Booking> getBooking() {
 		return booking;
 	}
 
 	public void setBooking(List<Booking> booking) {
 		this.booking = booking;
 	}
-*/
+
 }
 
 

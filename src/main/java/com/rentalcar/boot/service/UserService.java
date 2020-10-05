@@ -7,13 +7,13 @@ import com.rentalcar.boot.model.User;
 
 public interface UserService {
 	
-	public List<User> getAllUsers();
+	List<User> getAllUsers();
 	
-	public User getUserById(Long id);
+	User getUserById(Long id);
 	
-	public User createUser(User user);
+	User createUser(User user);
 	
-	public User updateUser(User user);
+	User updateUser(User user);
 	
-	public void deleteUser(Long id);
+	void deleteUser(Long id);
 }
