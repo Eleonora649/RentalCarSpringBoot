@@ -6,13 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.rentalcar.boot.converter.CarConverter;
-import com.rentalcar.boot.converter.CategoryConverter;
 import com.rentalcar.boot.dto.CarDTO;
-import com.rentalcar.boot.dto.CategoryDTO;
 import com.rentalcar.boot.model.Car;
 import com.rentalcar.boot.model.Category;
 import com.rentalcar.boot.service.CarService;
-import com.rentalcar.boot.service.CategoryService;
 
 @Component("carFacade")
 public class CarFacadeImpl implements CarFacade {
@@ -22,12 +19,6 @@ public class CarFacadeImpl implements CarFacade {
 	
 	@Autowired
 	private CarConverter carConverter;
-	
-	@Autowired
-	private CategoryConverter categoryConverter;
-	
-	@Autowired
-	private CategoryService categoryService;
 	
 	@Override
 	public List<CarDTO> getAllCars() {
@@ -52,9 +43,15 @@ public class CarFacadeImpl implements CarFacade {
 	@Override
 	public CarDTO updateCarDto(Long id, CarDTO carDto) throws Exception {
 		Car car = carConverter.convert(carDto);
-
+		
+		String model = car.getCarModel();
+		String manufacturer = car.getManufacturer();
+		int year = car.getYearOfRegistration();
+		String license = car.getCarLicensePlate();
+		Category category = car.getCategory();
+		
 		if(car!=null) {
-			car = carService.updateCar(car);
+			car = carService.updateCar(id, model, manufacturer, license, year, category);
 			carDto = carConverter.reverseConvert(car);
 		}
 		return carDto;

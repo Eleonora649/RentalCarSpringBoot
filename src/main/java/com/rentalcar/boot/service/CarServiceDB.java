@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rentalcar.boot.model.Car;
+import com.rentalcar.boot.model.Category;
 import com.rentalcar.boot.repository.CarRepository;
 
 @Service("carService")
@@ -30,15 +31,15 @@ public class CarServiceDB implements CarService {
 	}
 
 	@Override
-	public Car updateCar(Car car) {
-		Car c = this.getCarById(car.getIdCar());
+	public Car updateCar(Long id, String model, String manufacturer, String license, int year, Category category) {
+		Car c = this.getCarById(id);
 		
-		if(car!=null && c!=null) {
-			c.setCarModel(car.getCarModel());
-			c.setManufacturer(car.getManufacturer());
-			c.setCarLicensePlate(car.getCarLicensePlate());
-			c.setYearOfRegistration(car.getYearOfRegistration());
-			c.setCategory(car.getCategory());
+		if(c!=null) {
+			c.setCarModel(model);
+			c.setManufacturer(manufacturer);
+			c.setCarLicensePlate(license);
+			c.setYearOfRegistration(year);
+			c.setCategory(category);
 		}
 		return carRepository.save(c);
 	}

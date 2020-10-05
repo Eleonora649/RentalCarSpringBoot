@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rentalcar.boot.dto.CarDTO;
-import com.rentalcar.boot.dto.CategoryDTO;
 import com.rentalcar.boot.facade.CarFacade;
-import com.rentalcar.boot.facade.CategoryFacade;
 
 @RestController
 @RequestMapping(value="/cars")
@@ -25,9 +23,6 @@ public class CarController {
 
 	@Autowired
 	private CarFacade carFacade;
-	
-	@Autowired
-	private CategoryFacade catFacade;
 	
 	@GetMapping
 	public List<CarDTO> getAllCars() {
@@ -54,10 +49,9 @@ public class CarController {
 	}
 
 	@PutMapping
-	public ResponseEntity<CarDTO> updateCar(@RequestBody CarDTO carDto, CategoryDTO catDto) {
+	public ResponseEntity<CarDTO> updateCar(@RequestBody CarDTO carDto) {
 		try {
 			Long id = carDto.getIdCar();
-			List<CategoryDTO> listCategory = catFacade.getAllCategory();
 			carFacade.updateCarDto(id, carDto);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
