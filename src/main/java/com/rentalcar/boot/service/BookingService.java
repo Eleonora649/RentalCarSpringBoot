@@ -15,7 +15,7 @@ public interface BookingService {
 	
 	Booking createBooking(Date startBooking, Date endBooking, User user, Car car);
 	
-	Booking updateBooking(Booking booking);
+	Booking updateBooking(Long id, Date startBooking, Date endBooking, User user, Car car);
 	
 	void deleteBooking(Long id);
 

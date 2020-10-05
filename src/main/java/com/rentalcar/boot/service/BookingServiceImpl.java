@@ -40,14 +40,14 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public Booking updateBooking(Booking booking) {
-		Booking b = this.getBookingById(booking.getIdBooking());
+	public Booking updateBooking(Long id, Date startBooking, Date endBooking, User user, Car car) {
+		Booking b = this.getBookingById(id);
 		
-		if(booking!=null && b!=null) {
-			b.setStartBooking(booking.getStartBooking());
-			b.setEndOfBooking(booking.getEndOfBooking());
-			b.setCar(booking.getCar());
-			b.setUser(booking.getUser());
+		if(b!=null) {
+			b.setStartBooking(startBooking);
+			b.setEndOfBooking(endBooking);
+			b.setCar(car);
+			b.setUser(user);
 		}
 		return bookingRepository.save(b);
 	}

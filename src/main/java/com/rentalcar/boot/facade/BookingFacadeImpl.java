@@ -55,8 +55,13 @@ public class BookingFacadeImpl implements BookingFacade {
 	public BookingDTO updateBooking(Long id, BookingDTO bookDto) throws ParseException {
 		Booking booking = bookingConverter.convert(bookDto);
 		
+		Date dateStart = booking.getStartBooking();
+		Date dateEnd = booking.getEndOfBooking();
+		User user = booking.getUser();
+		Car car = booking.getCar();
+		
 		if(booking!=null) {
-			booking = bookingService.updateBooking(booking);
+			booking = bookingService.updateBooking(id, dateStart,dateEnd, user, car);
 			bookDto = bookingConverter.reverseConvert(booking);
 		}
 		return bookDto;
