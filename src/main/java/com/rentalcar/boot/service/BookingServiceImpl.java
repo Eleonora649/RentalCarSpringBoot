@@ -17,6 +17,9 @@ public class BookingServiceImpl implements BookingService {
 	@Autowired
 	private BookingRepository bookingRepository;
 	
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public List<Booking> getAllBookings() {
 		List<Booking> booking = bookingRepository.findAll();
@@ -33,8 +36,15 @@ public class BookingServiceImpl implements BookingService {
 		Booking booking = null;
 		
 		if(startBooking!=null && endBooking!=null) {
-			booking = new Booking(startBooking, endBooking, user, car);
-			bookingRepository.save(booking);
+			List<Booking> exist = bookingRepository.findBookingExist(car, startBooking);
+//			User u = userService.getUserById(user.getIdUser());
+			
+			if(!exist.isEmpty()) {
+				System.out.println("macchina già noleggiata in quei giorni");
+			} else {
+				booking = new Booking(startBooking, endBooking, user, car);
+				bookingRepository.save(booking);
+			}
 		}
 		return booking;
 	}

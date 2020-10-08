@@ -37,12 +37,13 @@ public class BookingController {
 		BookingDTO booking = null;
 		try {
 			booking = bookingFacade.createBooking(bookDto);
-			return new ResponseEntity<>(booking, HttpStatus.CREATED);
+			if(booking!=null) {
+				return new ResponseEntity<>(booking, HttpStatus.CREATED);
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} 
-		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@PutMapping
