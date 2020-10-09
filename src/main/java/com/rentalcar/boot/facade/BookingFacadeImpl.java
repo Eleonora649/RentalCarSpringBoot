@@ -46,9 +46,12 @@ public class BookingFacadeImpl implements BookingFacade {
 		User user = booking.getUser();
 		Car car = booking.getCar();
 
-		bookingService.createBooking(dateStart, dateEnd, user, car);
-		BookingDTO bookingDto = bookingConverter.reverseConvert(booking);
-		
+		Booking b = bookingService.createBooking(dateStart, dateEnd, user, car);
+		BookingDTO bookingDto = null;
+
+		if(b!=null) {
+			bookingDto = bookingConverter.reverseConvert(b);
+		}
 		return bookingDto;
 	}
 

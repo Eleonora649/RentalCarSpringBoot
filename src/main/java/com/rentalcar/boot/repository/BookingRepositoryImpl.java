@@ -16,7 +16,7 @@ public class BookingRepositoryImpl implements BookingRepositoryCustom {
 	
 	@Override
 	public List<Booking> findBookingExist(Car car, Date dateStart) {
-		List<Booking> booking = entityManager.createQuery("SELECT b FROM Booking b WHERE b.endOfBooking>=:dateStart and id_car=:idCar", Booking.class)
+		List<Booking> booking = entityManager.createQuery("SELECT b FROM Booking b WHERE b.endOfBooking>=:dateStart and car=:idCar", Booking.class)
 				.setParameter("idCar", car).setParameter("dateStart", dateStart).getResultList();
 		
 		return booking;
