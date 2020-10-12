@@ -3,12 +3,16 @@ package com.rentalcar.boot.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -42,15 +46,15 @@ public class User {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="user", cascade=CascadeType.ALL)
 	private List<Booking> booking;
 	
-/*	@ManyToMany(targetEntity=Role.class)
+	@ManyToMany(targetEntity=Role.class)
 	@JoinTable(name="user_role", 
-				joinColumns={@JoinColumn(name="id_user")}, 
-				inverseJoinColumns={@JoinColumn(name="id_role")})
-	private List<Role> roles; 
-*/	
+				joinColumns={@JoinColumn(name="id_user")},
+				inverseJoinColumns= {@JoinColumn(name="id_role")})
+	private List<Role> roles;
+
 	public User() {
 
 	}
@@ -118,11 +122,11 @@ public class User {
 	public void setBooking(List<Booking> booking) {
 		this.booking = booking;
 	}
-/*	public List<Role> getRoles() {
+	public List<Role> getRoles() {
 		return roles;
 	}
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-*/
+
 }

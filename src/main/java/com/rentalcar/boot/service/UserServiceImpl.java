@@ -1,19 +1,24 @@
 package com.rentalcar.boot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rentalcar.boot.model.Role;
 import com.rentalcar.boot.model.User;
 import com.rentalcar.boot.repository.UserRepository;
 
 @Service("userService")
-public class UserServiceDB implements UserService{
+public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserRepository userRepository;
-
+	
+	@Autowired
+	private RoleService roleService;
+	
 	@Override
 	public List<User> getAllUsers() {
 		return (List<User>) userRepository.findAll();
@@ -26,6 +31,10 @@ public class UserServiceDB implements UserService{
 
 	@Override
 	public User createUser(User user) {
+		Role role = roleService.findRoleById(2);
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(role);
+		user.setRoles(roles);
 		return user = userRepository.save(user);
 	}
 

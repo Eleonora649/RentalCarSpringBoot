@@ -42,7 +42,6 @@ public class UserFacadeImpl implements UserFacade {
 
 	@Override
 	public UserDTO updateUserDto(Long id, UserDTO userDto) throws ParseException {
-		//userDto = this.getUserDtoById(id);
 		User user = userConverter.convert(userDto); 
 		
 		if(user!=null) {

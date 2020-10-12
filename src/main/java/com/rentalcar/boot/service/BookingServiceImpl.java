@@ -35,24 +35,24 @@ public class BookingServiceImpl implements BookingService {
 		if(startBooking!=null && endBooking!=null) {
 			List<Booking> exist = bookingRepository.findBookingExist(car, startBooking, user);
 			
-				if(exist.isEmpty()) {
-					booking = new Booking(startBooking, endBooking, user, car);
-					bookingRepository.save(booking);
-					System.out.println("Prenotazione registrata con successo");
-				}
-				for (Booking b : exist) {
-					Car c = b.getCar();
-					User u = b.getUser();
-					Date start = b.getStartBooking();
-					Date end = b.getEndOfBooking();
+			if(exist.isEmpty()) {
+				booking = new Booking(startBooking, endBooking, user, car);
+				bookingRepository.save(booking);
+				System.out.println("Prenotazione registrata con successo");
+			}
+			for (Booking b : exist) {
+				Car c = b.getCar();
+				User u = b.getUser();
+				Date start = b.getStartBooking();
+				Date end = b.getEndOfBooking();
 			
-					if((c!=null && c==car) && (end!=null && start!=null)) {
-						System.out.println("la macchina: " + c.getCarModel() + " è già noleggiata in quei giorni");
-					} 
-					else if(u!=null) {
-						System.out.println("l'utente: "+ u.getName() + " ha già attiva un altra prenotazione");
-					}
+				if((c!=null && c==car) && (end!=null && start!=null)) {
+					System.out.println("la macchina: " + c.getCarModel() + " è già noleggiata in quei giorni");
+				} 
+				else if(u!=null) {
+					System.out.println("l'utente: "+ u.getName() + " ha già attiva un altra prenotazione");
 				}
+			}
 		} return booking;
 	}
 

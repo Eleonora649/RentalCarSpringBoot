@@ -10,7 +10,7 @@ import com.rentalcar.boot.model.Category;
 import com.rentalcar.boot.repository.CarRepository;
 
 @Service("carService")
-public class CarServiceDB implements CarService {
+public class CarServiceImpl implements CarService {
 
 	@Autowired
 	private CarRepository carRepository;

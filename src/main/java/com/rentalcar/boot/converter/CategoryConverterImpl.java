@@ -35,7 +35,6 @@ public class CategoryConverterImpl implements CategoryConverter {
 
 	@Override
 	public CategoryDTO reverseConvert(Category cat) {
-
 		CategoryDTO catDto = new CategoryDTO();
 		catDto.setIdCategory(cat.getIdCategory());
 		catDto.setName(cat.getName());
