@@ -1,6 +1,5 @@
 package com.rentalcar.boot.converter;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,11 +22,12 @@ public class BookingConverterImpl implements BookingConverter {
 	private UserConverter userConverter;
 	
 	@Override
-	public Booking convert(BookingDTO bookingDto) throws ParseException {
+	public Booking convert(BookingDTO bookingDto) throws Exception {
 		Booking booking = new Booking();
 		Date dateStart = new SimpleDateFormat("yyyy-MM-dd").parse(bookingDto.getStartBooking());
 		Date dateEnd = new SimpleDateFormat("yyy-MM-dd").parse(bookingDto.getEndOfBooking());
 		
+		booking.setIdBooking(bookingDto.getId());
 		booking.setStartBooking(dateStart);
 		booking.setEndOfBooking(dateEnd);
 		booking.setCar(carConverter.convert(bookingDto.getCar()));
@@ -37,7 +37,7 @@ public class BookingConverterImpl implements BookingConverter {
 	}
 
 	@Override
-	public List<Booking> convertAll(List<BookingDTO> bookingDto) throws ParseException {
+	public List<Booking> convertAll(List<BookingDTO> bookingDto) throws Exception {
 		List<Booking> bookings = new ArrayList<Booking>();
 		Iterator<BookingDTO> bookDto = bookingDto.iterator();
 		
@@ -54,6 +54,7 @@ public class BookingConverterImpl implements BookingConverter {
 		String dateStart = new SimpleDateFormat("yyyy-MM-dd").format(booking.getStartBooking());
 		String dateEnd = new SimpleDateFormat("yyyy-MM-dd").format(booking.getEndOfBooking());
 		
+		bookDto.setId(booking.getIdBooking());
 		bookDto.setStartBooking(dateStart);
 		bookDto.setEndOfBooking(dateEnd);
 		bookDto.setCar(carConverter.reverseConvert(booking.getCar()));

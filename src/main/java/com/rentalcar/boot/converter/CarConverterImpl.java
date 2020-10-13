@@ -24,15 +24,19 @@ public class CarConverterImpl implements CarConverter{
 	
 	@Override
 	public Car convert(CarDTO carDto) {
+		Category category = categoryService.getCategoryById(carDto.getCategory().getIdCategory());
 		
-		Category cat = categoryService.getCategoryById(carDto.getCategory());
-		Car car = new Car(carDto, cat);
-		
+		Car car = new Car();
+		car.setCarModel(carDto.getCarModel());
+		car.setManufacturer(carDto.getManufacturer());
+		car.setCarLicensePlate(carDto.getCarLicensePlate());
+		car.setYearOfRegistration(carDto.getYearOfRegistration());
+		car.setCategory(category);
 		return car;
 	}
 
 	@Override
-	public List<Car> convertAll(List<CarDTO> carDto) throws Exception {
+	public List<Car> convertAll(List<CarDTO> carDto) {
 		List<Car> cars = new ArrayList<Car>();
 		Iterator<CarDTO> carDtos = carDto.iterator();
 		
@@ -45,8 +49,8 @@ public class CarConverterImpl implements CarConverter{
 
 	@Override
 	public CarDTO reverseConvert(Car car) {
-		Category cat = categoryService.getCategoryById(car.getCategory().getIdCategory());
-		CategoryDTO catDto = categoryConverter.reverseConvert(cat);
+		Category category = categoryService.getCategoryById(car.getCategory().getIdCategory());
+		CategoryDTO categoryDto = categoryConverter.reverseConvert(category);
 		
 		CarDTO carDto = new CarDTO();
 		
@@ -54,7 +58,7 @@ public class CarConverterImpl implements CarConverter{
 		carDto.setManufacturer(car.getManufacturer());
 		carDto.setCarLicensePlate(car.getCarLicensePlate());
 		carDto.setYearOfRegistration(car.getYearOfRegistration());
-		carDto.setCategory(catDto.getIdCategory());
+		carDto.setCategory(categoryDto);
 		
 		return carDto;
 	}

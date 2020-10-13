@@ -1,7 +1,5 @@
 package com.rentalcar.boot.dto;
 
-import com.rentalcar.boot.model.Car;
-
 public class CarDTO {
 
 	private Long idCar;
@@ -9,19 +7,11 @@ public class CarDTO {
 	private String manufacturer;
 	private String carModel;
 	private String carLicensePlate;
-	private Long category;
+	private CategoryDTO category;
 	
 	public CarDTO() {
 	}
 
-	public CarDTO(Car car, Long cat) {
-		this.category = cat;
-		this.yearOfRegistration = car.getYearOfRegistration(); 
-		this.manufacturer = car.getManufacturer();
-		this.carLicensePlate = car.getCarLicensePlate();
-		this.carModel = car.getCarModel();
-	}
-	
 	public Long getIdCar() {
 		return idCar;
 	}
@@ -62,11 +52,11 @@ public class CarDTO {
 		this.carLicensePlate = carLicensePlate;
 	}
 	
-	public Long getCategory() {
+	public CategoryDTO getCategory() {
 		return category;
 	}
 	
-	public void setCategory(Long category) {
+	public void setCategory(CategoryDTO category) {
 		this.category = category;
 	}
 }

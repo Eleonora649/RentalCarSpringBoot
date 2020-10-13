@@ -1,6 +1,5 @@
 package com.rentalcar.boot.facade;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class BookingFacadeImpl implements BookingFacade {
 	}
 
 	@Override
-	public BookingDTO createBooking(BookingDTO bookDto) throws ParseException {
+	public BookingDTO createBooking(BookingDTO bookDto) throws Exception {
 		Booking booking = bookingConverter.convert(bookDto);
 		
 		Date dateStart = booking.getStartBooking();
@@ -56,7 +55,7 @@ public class BookingFacadeImpl implements BookingFacade {
 	}
 
 	@Override
-	public BookingDTO updateBooking(Long id, BookingDTO bookDto) throws ParseException {
+	public BookingDTO updateBooking(Long id, BookingDTO bookDto) throws Exception {
 		Booking booking = bookingConverter.convert(bookDto);
 		
 		Date dateStart = booking.getStartBooking();

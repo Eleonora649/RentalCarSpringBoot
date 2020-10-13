@@ -13,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.rentalcar.boot.dto.CarDTO;
-
 @Entity
 @Table(name="car")
 public class Car {
@@ -47,14 +45,6 @@ public class Car {
 		super();
 	}
 	
-	public Car(CarDTO carDto, Category cat) {
-		this.category = cat;
-		this.yearOfRegistration = carDto.getYearOfRegistration(); 
-		this.manufacturer = carDto.getManufacturer();
-		this.carLicensePlate = carDto.getCarLicensePlate();
-		this.carModel = carDto.getCarModel();
-	}
-
 	public Long getIdCar() {
 		return idCar;
 	}

@@ -1,11 +1,13 @@
 package com.rentalcar.boot.dto;
 
+import java.util.List;
+
 public class RoleDTO {
 
 	private int idRole;
 	private String description;
 	private String nameRole;
-	private Long users;
+	private List<UserDTO> users;
 	
 	public RoleDTO() {
 		super();
@@ -35,11 +37,11 @@ public class RoleDTO {
 		this.nameRole = nameRole;
 	}
 
-	public Long getUsers() {
+	public List<UserDTO> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Long users) {
+	public void setUsers(List<UserDTO> users) {
 		this.users = users;
 	} 
 	

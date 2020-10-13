@@ -33,14 +33,14 @@ public class CategoryFacadeImpl implements CategoryFacade {
 	}
 	
 	@Override
-	public CategoryDTO createCategory(CategoryDTO categoryDto) {
+	public CategoryDTO createCategory(CategoryDTO categoryDto) throws Exception {
 		Category category = categoryConverter.convert(categoryDto);
 		categoryService.addCategory(category);
 		return categoryConverter.reverseConvert(category);
 	}
 
 	@Override
-	public CategoryDTO updateCategoryDto(Long id, CategoryDTO categoryDto) {
+	public CategoryDTO updateCategoryDto(Long id, CategoryDTO categoryDto) throws Exception {
 		Category category = categoryConverter.convert(categoryDto);
 		
 		if(category!=null) {

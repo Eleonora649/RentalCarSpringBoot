@@ -1,6 +1,5 @@
 package com.rentalcar.boot.facade;
 
-import java.text.ParseException;
 import java.util.List;
 
 import com.rentalcar.boot.dto.BookingDTO;
@@ -11,9 +10,9 @@ public interface BookingFacade {
 	
 	List<BookingDTO> getAllBookings();
 	
-	BookingDTO createBooking(BookingDTO bookDto) throws ParseException;
+	BookingDTO createBooking(BookingDTO bookDto) throws Exception;
 	
-	BookingDTO updateBooking(Long id, BookingDTO bookDto) throws ParseException;
+	BookingDTO updateBooking(Long id, BookingDTO bookDto) throws Exception;
 	
 	void deleteBookingDto(Long id);
 }

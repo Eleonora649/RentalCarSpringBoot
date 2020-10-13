@@ -9,7 +9,7 @@ public interface CarConverter {
 	
 	Car convert(CarDTO carDto);
 	
-	List<Car> convertAll(List<CarDTO> carDto) throws Exception;
+	List<Car> convertAll(List<CarDTO> carDto);
 	
 	CarDTO reverseConvert(Car car);
 	

@@ -7,9 +7,9 @@ import com.rentalcar.boot.model.Category;
 
 public interface CategoryConverter {
 
-	Category convert(CategoryDTO catDto); 
+	Category convert(CategoryDTO catDto) throws Exception; 
 	
-	List<Category> convertAll(List<CategoryDTO> catDto);
+	List<Category> convertAll(List<CategoryDTO> catDto) throws Exception;
 	
 	CategoryDTO reverseConvert(Category cat);
 	

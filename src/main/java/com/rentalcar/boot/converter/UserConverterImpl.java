@@ -47,6 +47,7 @@ public class UserConverterImpl implements UserConverter {
 		UserDTO userDto = new UserDTO();
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(user.getDateOfBirth());
 		
+		userDto.setId(user.getIdUser());
 		userDto.setName(user.getName());
 		userDto.setSurname(user.getSurname());
 		userDto.setDate(date);

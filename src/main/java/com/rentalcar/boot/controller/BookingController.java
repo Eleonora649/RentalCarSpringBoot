@@ -1,6 +1,5 @@
 package com.rentalcar.boot.controller;
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,7 @@ public class BookingController {
 			if(booking!=null) {
 				return new ResponseEntity<>(booking, HttpStatus.CREATED);
 			}
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} 
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -58,7 +57,7 @@ public class BookingController {
 			Long id = bookingDto.getId();
 			bookingFacade.updateBooking(id, bookingDto);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 	}

@@ -10,9 +10,9 @@ public interface CategoryFacade {
 	
 	CategoryDTO getCategoryDtoById(Long id);
 	
-	CategoryDTO createCategory(CategoryDTO catDto);
+	CategoryDTO createCategory(CategoryDTO catDto) throws Exception;
 	
-	CategoryDTO updateCategoryDto(Long id, CategoryDTO catDto);
+	CategoryDTO updateCategoryDto(Long id, CategoryDTO catDto) throws Exception;
 	
 	void deleteCategoryDto(Long id);
 
