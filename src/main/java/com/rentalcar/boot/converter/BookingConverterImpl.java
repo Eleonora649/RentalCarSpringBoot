@@ -12,32 +12,26 @@ import org.springframework.stereotype.Component;
 
 import com.rentalcar.boot.dto.BookingDTO;
 import com.rentalcar.boot.model.Booking;
-import com.rentalcar.boot.model.Car;
-import com.rentalcar.boot.model.User;
-import com.rentalcar.boot.service.CarService;
-import com.rentalcar.boot.service.UserService;
 
 @Component("bookingConverter")
 public class BookingConverterImpl implements BookingConverter {
 
 	@Autowired
-	private CarService carService;
+	private CarConverter carConverter;
 	
 	@Autowired
-	private UserService userService;
+	private UserConverter userConverter;
 	
 	@Override
 	public Booking convert(BookingDTO bookingDto) throws ParseException {
 		Booking booking = new Booking();
 		Date dateStart = new SimpleDateFormat("yyyy-MM-dd").parse(bookingDto.getStartBooking());
 		Date dateEnd = new SimpleDateFormat("yyy-MM-dd").parse(bookingDto.getEndOfBooking());
-		Car car = carService.getCarById(bookingDto.getCar());
-		User user = userService.getUserById(bookingDto.getUser());
 		
 		booking.setStartBooking(dateStart);
 		booking.setEndOfBooking(dateEnd);
-		booking.setCar(car);
-		booking.setUser(user);
+		booking.setCar(carConverter.convert(bookingDto.getCar()));
+		booking.setUser(userConverter.convert(bookingDto.getUser()));
 		
 		return booking;
 	}
@@ -59,13 +53,11 @@ public class BookingConverterImpl implements BookingConverter {
 		BookingDTO bookDto = new BookingDTO();
 		String dateStart = new SimpleDateFormat("yyyy-MM-dd").format(booking.getStartBooking());
 		String dateEnd = new SimpleDateFormat("yyyy-MM-dd").format(booking.getEndOfBooking());
-		Long carId = booking.getCar().getIdCar();
-		Long userId = booking.getUser().getIdUser();
 		
 		bookDto.setStartBooking(dateStart);
 		bookDto.setEndOfBooking(dateEnd);
-		bookDto.setCar(carId);
-		bookDto.setUser(userId);
+		bookDto.setCar(carConverter.reverseConvert(booking.getCar()));
+		bookDto.setUser(userConverter.reverseConvert(booking.getUser()));
 		
 		return bookDto;
 	}

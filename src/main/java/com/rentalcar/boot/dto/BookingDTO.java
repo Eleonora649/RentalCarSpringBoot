@@ -5,8 +5,8 @@ public class BookingDTO {
 	private Long id;
 	private String startBooking;
 	private String endOfBooking;
-	private Long user;
-	private Long car;
+	private UserDTO user;
+	private CarDTO car;
 	
 	public BookingDTO() {
 		
@@ -36,19 +36,19 @@ public class BookingDTO {
 		this.endOfBooking = endOfBooking;
 	}
 	
-	public Long getUser() {
+	public UserDTO getUser() {
 		return user;
 	}
 	
-	public void setUser(Long user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
 	
-	public Long getCar() {
+	public CarDTO getCar() {
 		return car;
 	}
 	
-	public void setCar(Long car) {
+	public void setCar(CarDTO car) {
 		this.car = car;
 	}
 	
