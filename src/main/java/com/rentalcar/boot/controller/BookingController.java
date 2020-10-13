@@ -31,6 +31,12 @@ public class BookingController {
 		return bookings;
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<BookingDTO> getBookingById(@PathVariable(value="id") Long id) {
+		BookingDTO booking = bookingFacade.getBookingDtoById(id);
+		return new ResponseEntity<>(booking, HttpStatus.OK);
+	}
+	
 	@PostMapping
 	public ResponseEntity<BookingDTO> createBooking(@RequestBody BookingDTO bookDto) {
 		
