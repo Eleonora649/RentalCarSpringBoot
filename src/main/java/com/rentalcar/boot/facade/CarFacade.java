@@ -10,9 +10,12 @@ public interface CarFacade {
 	
 	CarDTO getCarDtoById(Long id);
 	
+	List<CarDTO> getCarDtoByCategory(Long id);
+	
 	CarDTO createCar(CarDTO carDto);
 	
 	CarDTO updateCarDto(Long id, CarDTO carDto) throws Exception;
 	
 	void deleteCarDto(Long id);
+
 }

@@ -34,6 +34,13 @@ public class CarFacadeImpl implements CarFacade {
 	}
 
 	@Override
+	public List<CarDTO> getCarDtoByCategory(Long idCategory) {
+		List<Car> car = carService.getCarByCategory(idCategory);
+		List<CarDTO> carDto = carConverter.reverseConvertAll(car);
+		return carDto;
+	}
+	
+	@Override
 	public CarDTO createCar(CarDTO carDto) {
 		Car car = carConverter.convert(carDto);
 		carService.createCar(car);

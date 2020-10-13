@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.rentalcar.boot.model.Category;
 
 @Repository("catRepository")
-public interface CategoryRepository extends JpaRepository<Category, Long>{
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-	public Category findByName(String name);
 }

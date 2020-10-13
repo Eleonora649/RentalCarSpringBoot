@@ -11,12 +11,12 @@ public interface CarService {
 	
 	Car getCarById(Long id);
 	
+	List<Car> getCarByCategory(Long id);
+	
 	Car createCar(Car car);
     
     Car updateCar(Long id, String model, String manufacturer, String license, int year, Category category);
     
     void deleteCar(Long id);
-    
-    
-    
+
 }

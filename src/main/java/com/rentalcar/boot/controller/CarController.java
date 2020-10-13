@@ -35,6 +35,12 @@ public class CarController {
 		return new ResponseEntity<>(car, HttpStatus.OK);
 	}
 	
+	@GetMapping("/category/{id}")
+	public List<CarDTO> getCarByCategory(@PathVariable(value="id") Long idCategory) {
+		List<CarDTO> cars = carFacade.getCarDtoByCategory(idCategory);
+		return cars;
+	}
+	
 	@PostMapping
 	public ResponseEntity<CarDTO> createCar(@RequestBody CarDTO carDto) {
 		CarDTO car = null;

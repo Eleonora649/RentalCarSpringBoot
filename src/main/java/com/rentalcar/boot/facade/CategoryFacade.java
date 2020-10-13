@@ -15,4 +15,5 @@ public interface CategoryFacade {
 	CategoryDTO updateCategoryDto(Long id, CategoryDTO catDto);
 	
 	void deleteCategoryDto(Long id);
+
 }

@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 import com.rentalcar.boot.model.Car;
 import com.rentalcar.boot.model.Category;
 import com.rentalcar.boot.repository.CarRepository;
+import com.rentalcar.boot.repository.CategoryRepository;
 
 @Service("carService")
 public class CarServiceImpl implements CarService {
 
 	@Autowired
 	private CarRepository carRepository;
+
+	@Autowired
+	private CategoryRepository catRepository;
 	
 	@Override
 	public List<Car> getAllCars() {
@@ -25,6 +29,13 @@ public class CarServiceImpl implements CarService {
 		return carRepository.getOne(id);
 	}
 
+	@Override
+	public List<Car> getCarByCategory(Long id) {
+		Category category = catRepository.getOne(id);
+		List<Car> car = carRepository.getCarByCategory(category.getIdCategory());
+		return car;
+	}
+	
 	@Override
 	public Car createCar(Car car) {
 		return car = carRepository.save(car);

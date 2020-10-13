@@ -27,27 +27,27 @@ public class CategoryFacadeImpl implements CategoryFacade {
 
 	@Override
 	public CategoryDTO getCategoryDtoById(Long id) {
-		Category cat = categoryService.getCategoryById(id);
-		CategoryDTO catDto = categoryConverter.reverseConvert(cat);
-		return catDto;
+		Category category = categoryService.getCategoryById(id);
+		CategoryDTO categoryDto = categoryConverter.reverseConvert(category);
+		return categoryDto;
+	}
+	
+	@Override
+	public CategoryDTO createCategory(CategoryDTO categoryDto) {
+		Category category = categoryConverter.convert(categoryDto);
+		categoryService.addCategory(category);
+		return categoryConverter.reverseConvert(category);
 	}
 
 	@Override
-	public CategoryDTO createCategory(CategoryDTO catDto) {
-		Category cat = categoryConverter.convert(catDto);
-		categoryService.addCategory(cat);
-		return categoryConverter.reverseConvert(cat);
-	}
-
-	@Override
-	public CategoryDTO updateCategoryDto(Long id, CategoryDTO catDto) {
-		Category cat = categoryConverter.convert(catDto);
+	public CategoryDTO updateCategoryDto(Long id, CategoryDTO categoryDto) {
+		Category category = categoryConverter.convert(categoryDto);
 		
-		if(cat!=null) {
-			cat = categoryService.updateCategory(cat);
-			catDto = categoryConverter.reverseConvert(cat);
+		if(category!=null) {
+			category = categoryService.updateCategory(category);
+			categoryDto = categoryConverter.reverseConvert(category);
 		}
-		return catDto;
+		return categoryDto;
 	}
 
 	@Override
