@@ -38,17 +38,17 @@ public class BookingController {
 	
 	@PostMapping
 	public ResponseEntity<BookingDTO> createBooking(@RequestBody BookingDTO bookDto) {
-		
 		BookingDTO booking = null;
 		try {
 			booking = bookingFacade.createBooking(bookDto);
-			if(booking!=null) {
-				return new ResponseEntity<>(booking, HttpStatus.CREATED);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		if(booking==null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(booking, HttpStatus.CREATED);
+		}
 	}
 
 	@PutMapping

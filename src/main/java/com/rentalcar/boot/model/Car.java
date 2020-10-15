@@ -2,6 +2,7 @@ package com.rentalcar.boot.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +39,7 @@ public class Car {
 	@JoinColumn(name="id_category")
 	private Category category;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="car")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="car", cascade=CascadeType.ALL)
 	private List<Booking> booking;
 
 	public Car() {

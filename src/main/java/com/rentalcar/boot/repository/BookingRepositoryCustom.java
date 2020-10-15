@@ -9,6 +9,6 @@ import com.rentalcar.boot.model.User;
 
 public interface BookingRepositoryCustom {
 	
-	List<Booking> findBookingExist(Car car, Date dateStart, User user);
+	List<Booking> findBookingExist(Car car, User user, Date dateStart, Date endStart);
 
 }

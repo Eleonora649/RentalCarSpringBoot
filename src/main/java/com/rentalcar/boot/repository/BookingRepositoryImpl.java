@@ -16,13 +16,17 @@ public class BookingRepositoryImpl implements BookingRepositoryCustom {
     private EntityManager entityManager;
 	
 	@Override
-	public List<Booking> findBookingExist(Car car, Date dateStart, User user) {
+	public List<Booking> findBookingExist(Car car, User user, Date dateStart, Date dateEnd) {
 		List<Booking> booking = entityManager
-				.createQuery("SELECT b FROM Booking b WHERE (b.endOfBooking>=:dateStart and car=:idCar) or "
-						+ "(b.endOfBooking>=:dateStart and user=:idUser)", Booking.class)
-				.setParameter("idCar", car)
+				.createQuery("SELECT b FROM Booking b WHERE ((car=:car OR user=:user) AND "
+						+ "((b.startBooking<=:dateStart AND b.endOfBooking>=:dateStart) OR "
+						+ "(b.endOfBooking<=:dateEnd AND b.startBooking>=:dateEnd)) AND (DATE(CURDATE())<=:dateEnd)) "
+						+ "OR ((user=:user) AND (DATE(CURDATE())<=:dateEnd))", Booking.class)
+				.setParameter("car", car)
+				.setParameter("user", user)
 				.setParameter("dateStart", dateStart)
-				.setParameter("idUser", user).getResultList();
+				.setParameter("dateEnd", dateEnd)
+				.getResultList();
 		
 		return booking;
 	}

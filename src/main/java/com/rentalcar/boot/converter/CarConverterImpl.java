@@ -27,6 +27,7 @@ public class CarConverterImpl implements CarConverter{
 		Category category = categoryService.getCategoryById(carDto.getCategory().getIdCategory());
 		
 		Car car = new Car();
+		car.setIdCar(carDto.getIdCar());
 		car.setCarModel(carDto.getCarModel());
 		car.setManufacturer(carDto.getManufacturer());
 		car.setCarLicensePlate(carDto.getCarLicensePlate());
@@ -53,7 +54,7 @@ public class CarConverterImpl implements CarConverter{
 		CategoryDTO categoryDto = categoryConverter.reverseConvert(category);
 		
 		CarDTO carDto = new CarDTO();
-		
+		carDto.setIdCar(car.getIdCar());
 		carDto.setCarModel(car.getCarModel());
 		carDto.setManufacturer(car.getManufacturer());
 		carDto.setCarLicensePlate(car.getCarLicensePlate());

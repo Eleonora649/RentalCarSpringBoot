@@ -1,6 +1,5 @@
 package com.rentalcar.boot.facade;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Component;
 import com.rentalcar.boot.converter.BookingConverter;
 import com.rentalcar.boot.dto.BookingDTO;
 import com.rentalcar.boot.model.Booking;
-import com.rentalcar.boot.model.Car;
-import com.rentalcar.boot.model.User;
 import com.rentalcar.boot.service.BookingService;
 
 @Component("bookingFacade")
@@ -40,12 +37,7 @@ public class BookingFacadeImpl implements BookingFacade {
 	public BookingDTO createBooking(BookingDTO bookDto) throws Exception {
 		Booking booking = bookingConverter.convert(bookDto);
 		
-		Date dateStart = booking.getStartBooking();
-		Date dateEnd = booking.getEndOfBooking();
-		User user = booking.getUser();
-		Car car = booking.getCar();
-
-		Booking b = bookingService.createBooking(dateStart, dateEnd, user, car);
+		Booking b = bookingService.createBooking(booking);
 		BookingDTO bookingDto = null;
 
 		if(b!=null) {
@@ -58,13 +50,13 @@ public class BookingFacadeImpl implements BookingFacade {
 	public BookingDTO updateBooking(Long id, BookingDTO bookDto) throws Exception {
 		Booking booking = bookingConverter.convert(bookDto);
 		
-		Date dateStart = booking.getStartBooking();
-		Date dateEnd = booking.getEndOfBooking();
-		User user = booking.getUser();
-		Car car = booking.getCar();
+		booking.getStartBooking();
+		booking.getEndOfBooking();
+		booking.getUser();
+		booking.getCar();
 		
 		if(booking!=null) {
-			booking = bookingService.updateBooking(id, dateStart,dateEnd, user, car);
+			booking = bookingService.updateBooking(id, booking);
 			bookDto = bookingConverter.reverseConvert(booking);
 		}
 		return bookDto;
