@@ -27,6 +27,7 @@ public class BookingConverterImpl implements BookingConverter {
 		Date dateStart = new SimpleDateFormat("yyyy-MM-dd").parse(bookingDto.getStartBooking());
 		Date dateEnd = new SimpleDateFormat("yyy-MM-dd").parse(bookingDto.getEndOfBooking());
 		
+		booking.setIdBooking(bookingDto.getId());
 		booking.setStartBooking(dateStart);
 		booking.setEndOfBooking(dateEnd);
 		booking.setCar(carConverter.convert(bookingDto.getCar()));
@@ -53,6 +54,7 @@ public class BookingConverterImpl implements BookingConverter {
 		String dateStart = new SimpleDateFormat("yyyy-MM-dd").format(booking.getStartBooking());
 		String dateEnd = new SimpleDateFormat("yyyy-MM-dd").format(booking.getEndOfBooking());
 		
+		bookDto.setId(booking.getIdBooking());
 		bookDto.setStartBooking(dateStart);
 		bookDto.setEndOfBooking(dateEnd);
 		bookDto.setCar(carConverter.reverseConvert(booking.getCar()));
