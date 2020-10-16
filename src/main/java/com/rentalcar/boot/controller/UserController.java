@@ -36,7 +36,7 @@ public class UserController {
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 	
-	@PostMapping
+	@PostMapping("/register")
 	public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDto) {
 		UserDTO user = null;
 		try {
