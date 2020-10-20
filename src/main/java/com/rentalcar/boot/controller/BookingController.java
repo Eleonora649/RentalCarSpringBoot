@@ -24,13 +24,13 @@ public class BookingController {
 	@Autowired
 	private BookingFacade bookingFacade;
 	
-	@GetMapping
+	@GetMapping("/list-bookings")
 	public List<BookingDTO> getAllBookings() {
 		List<BookingDTO> bookings = bookingFacade.getAllBookings();
 		return bookings;
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/list-bookings/{id}")
 	public ResponseEntity<BookingDTO> getBookingById(@PathVariable(value="id") Long id) {
 		BookingDTO booking = bookingFacade.getBookingDtoById(id);
 		return new ResponseEntity<>(booking, HttpStatus.OK);
@@ -62,7 +62,7 @@ public class BookingController {
 	    }
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete-bookings/{id}")
 	public ResponseEntity<HttpStatus> deleteBooking(@PathVariable Long id) {
 		bookingFacade.deleteBookingDto(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

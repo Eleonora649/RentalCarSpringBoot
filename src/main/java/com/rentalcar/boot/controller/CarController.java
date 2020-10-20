@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,24 +25,28 @@ public class CarController {
 	@Autowired
 	private CarFacade carFacade;
 	
-	@GetMapping
+	@PreAuthorize("hasRole('ADMIN') || hasRole('CUSTOMER')")
+	@GetMapping("/list-cars")
 	public List<CarDTO> getAllCars() {
 		return carFacade.getAllCars();
 	}
 	
-	@GetMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN') || hasRole('CUSTOMER')")
+	@GetMapping("/list-cars/{id}")
 	public ResponseEntity<CarDTO> getCarById(@PathVariable(value="id") Long id) {
 		CarDTO car = carFacade.getCarDtoById(id);
 		return new ResponseEntity<>(car, HttpStatus.OK);
 	}
 	
-	@GetMapping("/category/{id}")
+	@PreAuthorize("hasRole('ADMIN') || hasRole('CUSTOMER')")
+	@GetMapping("/list-cars/category/{id}")
 	public List<CarDTO> getCarByCategory(@PathVariable(value="id") Long idCategory) {
 		List<CarDTO> cars = carFacade.getCarDtoByCategory(idCategory);
 		return cars;
 	}
 	
-	@PostMapping
+	@PreAuthorize("hasRole('ADMIN')")
+	@PostMapping("/register")
 	public ResponseEntity<CarDTO> createCar(@RequestBody CarDTO carDto) {
 		CarDTO car = null;
 		try {
@@ -54,6 +59,7 @@ public class CarController {
 		}
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping
 	public ResponseEntity<CarDTO> updateCar(@RequestBody CarDTO carDto) {
 		try {
@@ -65,7 +71,8 @@ public class CarController {
 		}
 	}
 	
-	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	@DeleteMapping("/delete-cars/{id}")
 	public ResponseEntity<HttpStatus> deleteCar(@PathVariable Long id) {
 		carFacade.deleteCarDto(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

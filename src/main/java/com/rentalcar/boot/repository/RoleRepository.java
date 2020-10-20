@@ -10,8 +10,7 @@ import com.rentalcar.boot.model.Role;
 @Repository("roleRepository")
 public interface RoleRepository extends JpaRepository<Role, Integer>{
 
-	@Query("SELECT r FROM Role r WHERE name_role=:name")
+	@Query("SELECT r FROM Role r WHERE r.nameRole=:name")
 	public Role findByName(@Param("name") String name);
-	
 }
 

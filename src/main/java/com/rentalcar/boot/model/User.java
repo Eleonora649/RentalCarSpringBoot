@@ -49,10 +49,10 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="user", cascade=CascadeType.ALL)
 	private List<Booking> booking;
 	
-	@ManyToMany(targetEntity=Role.class)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="user_role", 
-				joinColumns={@JoinColumn(name="id_user")},
-				inverseJoinColumns= {@JoinColumn(name="id_role")})
+				joinColumns={@JoinColumn(name="id_user", referencedColumnName="id_user")},
+				inverseJoinColumns= {@JoinColumn(name="id_role", referencedColumnName="id_role")})
 	private List<Role> roles;
 
 	public User() {
@@ -128,5 +128,4 @@ public class User {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-
 }

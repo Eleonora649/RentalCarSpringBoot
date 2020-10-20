@@ -2,11 +2,13 @@ package com.rentalcar.boot.dto;
 
 import java.util.List;
 
+import com.rentalcar.boot.model.ERole;
+
 public class RoleDTO {
 
 	private int idRole;
 	private String description;
-	private String nameRole;
+	private ERole nameRole;
 	private List<UserDTO> users;
 	
 	public RoleDTO() {
@@ -29,11 +31,11 @@ public class RoleDTO {
 		this.description = description;
 	}
 
-	public String getNameRole() {
+	public ERole getNameRole() {
 		return nameRole;
 	}
 
-	public void setNameRole(String nameRole) {
+	public void setNameRole(ERole nameRole) {
 		this.nameRole = nameRole;
 	}
 

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -20,9 +22,10 @@ public class Role {
 	private String description;
 
 	@Column(name="name_role")
-	private String nameRole;
+	@Enumerated(EnumType.STRING)
+	private ERole nameRole;
 
-	@ManyToMany(mappedBy = "roles",targetEntity=User.class) //,cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="roles", targetEntity=User.class)
 	private List<User> users; 
 
 	public Role() {
@@ -45,11 +48,11 @@ public class Role {
 		this.description = description;
 	}
 
-	public String getNameRole() {
+	public ERole getNameRole() {
 		return nameRole;
 	}
 
-	public void setNameRole(String nameRole) {
+	public void setNameRole(ERole nameRole) {
 		this.nameRole = nameRole;
 	}
 
@@ -62,5 +65,3 @@ public class Role {
 	}
 		
 }
-
-
